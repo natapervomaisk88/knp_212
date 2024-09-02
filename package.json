@@ -1,0 +1,17 @@
+{
+  "name": "knp_212",
+  "version": "1.0.0",
+  "description": "my first project",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "eventloop"
+  ],
+  "author": "Natalya Babenko <babenko_na@itstep.academy>",
+  "license": "ISC"
+}
