@@ -24,8 +24,4 @@ productRoutes.get("/:id_product", (req, res, next) => {
   next();
 });
 
-// productRoutes.post("/products", createProduct, (req, res) => {
-//   products.push(req.new_product);
-//   res.status(201).json(req.new_product);
-// });
 export default productRoutes;
