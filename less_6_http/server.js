@@ -1,7 +1,7 @@
 import { log } from "node:console";
-import querystring from "node:querystring";
 import http from "node:http";
 import path from "node:path";
+import url from "node:url";
 import fs from "node:fs";
 const PORT = 3000;
 
@@ -29,9 +29,10 @@ const getStaticFile = (res, filePath, ext) => {
 };
 
 const server = http.createServer((req, res) => {
-  const url = req.url;
-  console.log(url);
-  switch (url) {
+  const queryParams = url.parse(req.url, true).query;
+  const myurl = req.url;
+  console.log(queryParams);
+  switch (myurl) {
     case "/":
       res.write(
         fs.readFileSync(
@@ -49,9 +50,9 @@ const server = http.createServer((req, res) => {
       res.end();
       break;
     default:
-      const ext = path.extname(url);
+      const ext = path.extname(myurl);
       if (ext in mimeTypes) {
-        getStaticFile(res, url, ext);
+        getStaticFile(res, myurl, ext);
       } else {
         res.statusCode = 404;
         res.end();
