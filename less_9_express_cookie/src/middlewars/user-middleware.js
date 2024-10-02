@@ -12,6 +12,7 @@ export const checkUser = (req, res, next) => {
 export const createUser = (req, res, next) => {
   if (
     req.body &&
+    req.body.answer &&
     req.body.login &&
     req.body.email &&
     req.body.password &&
