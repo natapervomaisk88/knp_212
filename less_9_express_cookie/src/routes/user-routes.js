@@ -1,23 +1,40 @@
 import { Router } from "express";
-import validator from "validator";
-import bcrypt from "bcrypt";
+import { createUser } from "../middlewars/user-middleware.js";
+import { users } from "../data/users.js";
+
 const userRoutes = Router();
+
+userRoutes.get("/", (req, res) => {
+  res.json(users);
+  res.end();
+});
 
 userRoutes
   .route("/signup")
   .get((req, res) => {
-    res.render("form_signup");
+    res.render("form_register");
   })
-  .post((req, res) => {
+  .post(createUser, (req, res) => {
     //TODO: перевірка існування body
     //валідація даних   console.log(validator.isEmail(req.body.email));
     // Хешуємо пароль console.log(bcrypt.hashSync(req.body.password, 10));
     //bcrypt.compareSync()
-    res.cookie("user", req.body.login, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60,
-    });
+    // res.cookie("user", req.body.login, {
+    //   httpOnly: true,
+    //   maxAge: 1000 * 60 * 60,
+    // });
+    req.session.user = {
+      login: req.body.login,
+      email: req.body.email,
+    };
     res.redirect("/");
   });
+userRoutes.get("/signin", (req, res) => {
+  res.render("form_auth");
+});
+userRoutes.get("/logout", (req, res) => {
+  req.session.destroy(); //знищує session
+  res.redirect("/");
+});
 
 export default userRoutes;

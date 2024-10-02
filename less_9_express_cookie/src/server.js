@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 import exphbs from "express-handlebars";
 import path from "node:path";
 import cookieParser from "cookie-parser";
@@ -14,7 +15,16 @@ const hbs = exphbs.create({
 });
 
 const app = express();
+app.use(express.static("public"));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 },
+  })
+);
 app.use(checkUser);
 app.use(navbar);
 app.engine("hbs", hbs.engine);
