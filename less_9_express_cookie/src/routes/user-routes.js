@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser } from "../middlewars/user-middleware.js";
+import { createUser, authUser } from "../middlewars/user-middleware.js";
 import { users } from "../data/users.js";
 
 const userRoutes = Router();
@@ -31,6 +31,13 @@ userRoutes
   });
 userRoutes.get("/signin", (req, res) => {
   res.render("form_auth");
+});
+userRoutes.post("/signin", authUser, (req, res) => {
+  req.session.user = {
+    login: req.body.login,
+    //email: req.body.email,
+  };
+  res.redirect("/");
 });
 userRoutes.get("/logout", (req, res) => {
   req.session.destroy(); //знищує session

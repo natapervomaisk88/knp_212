@@ -35,3 +35,16 @@ export const createUser = (req, res, next) => {
   res.status(400);
   res.redirect("/");
 };
+
+export const authUser = (req, res, next) => {
+  if (req.body && req.body.answer && req.body.login && req.body.password) {
+    const { login, password } = req.body;
+    const user = users.find((el) => el.login === login || el.email === login);
+    if (user && bcrypt.compareSync(password, user.password)) {
+      next();
+      return;
+    }
+    res.status(400);
+    res.redirect("/");
+  }
+};
