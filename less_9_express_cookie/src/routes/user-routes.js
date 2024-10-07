@@ -44,4 +44,9 @@ userRoutes.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+userRoutes.get("/list_of_users", (req, res) => {
+  let existUsers = users?.length > 0 ? 1 : 0;
+  res.render("list_of_users", { users, existUsers });
+});
+
 export default userRoutes;
