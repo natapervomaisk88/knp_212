@@ -3,21 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connection = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const category_model_1 = require("../models/category-model");
-// export const connection = new Sequelize({
-//   dialect: "postgres",
-//   host: "localhost",
-//   port: 5432,
-//   username: "postgres",
-//   password: "simple",
-//   database: "knp212",
-//   models: [Category], //TODO:винести в .env
-// });
+require("dotenv/config");
+const product_model_1 = require("../models/product-model");
 exports.connection = new sequelize_typescript_1.Sequelize({
     dialect: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "",
-    database: "knp212",
-    models: [category_model_1.Category], //TODO:винести в .env
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    models: [category_model_1.Category, product_model_1.Product],
 });

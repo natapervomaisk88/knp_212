@@ -1,4 +1,4 @@
-import { Category } from "../models/category-model";
+import { Category } from "../models/category-model.js";
 import { Request, Response } from "express";
 
 //type RequestWithBody<T> = Request<{}, {}, T>;

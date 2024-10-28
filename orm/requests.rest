@@ -1,9 +1,22 @@
-POST http://localhost:3000/category HTTP/1.1
+POST https://localhost/category HTTP/1.1
 content-type:application/json
 
 {
-    "title":"Хлібобулочні вироби"
+    "title":"Книги"
 }
 
 ###
-GET http://localhost:3000/category HTTP/1.1
+GET https://localhost/category HTTP/1.1
+
+### 
+POST https://localhost/product HTTP/1.1
+content-type:application/json
+
+{
+    "title":"Book 2",
+    "price":55.70,
+    "id_category":1
+}
+
+### 
+GET https://localhost/product HTTP/1.1

@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Category = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const product_model_1 = require("./product-model");
 let Category = class Category extends sequelize_typescript_1.Model {
 };
 exports.Category = Category;
@@ -25,9 +26,12 @@ __decorate([
         unique: true,
     })
 ], Category.prototype, "title", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => product_model_1.Product)
+], Category.prototype, "products", void 0);
 exports.Category = Category = __decorate([
     (0, sequelize_typescript_1.Table)({
-        tableName: "category",
+        tableName: "categories",
         timestamps: false, //createdAt, updatedAt - не буде
     })
 ], Category);

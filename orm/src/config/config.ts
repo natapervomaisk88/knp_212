@@ -1,22 +1,14 @@
 import { Sequelize } from "sequelize-typescript";
 import { Category } from "../models/category-model";
-
-// export const connection = new Sequelize({
-//   dialect: "postgres",
-//   host: "localhost",
-//   port: 5432,
-//   username: "postgres",
-//   password: "simple",
-//   database: "knp212",
-//   models: [Category], //TODO:винести в .env
-// });
+import "dotenv/config";
+import { Product } from "../models/product-model";
 
 export const connection = new Sequelize({
   dialect: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "",
-  database: "knp212",
-  models: [Category], //TODO:винести в .env
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  models: [Category, Product],
 });
