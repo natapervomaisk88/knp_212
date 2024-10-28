@@ -20,3 +20,38 @@ content-type:application/json
 
 ### 
 GET https://localhost/product HTTP/1.1
+
+###
+
+
+POST https://localhost/user HTTP/1.1
+content-type:application/json
+
+{
+    "name":"Ivan Stepanenko",
+    "login":"ivan2"
+}
+
+### 
+
+GET https://localhost/user HTTP/1.1
+
+###
+
+
+POST https://localhost/post HTTP/1.1
+content-type:application/json
+
+{
+    "title":"Post #3",
+    "description":"Description for Post #3",
+    "user_id":1
+}
+
+### 
+
+GET https://localhost/post HTTP/1.1
+
+
+###
+GET https://localhost/user/1 HTTP/1.1

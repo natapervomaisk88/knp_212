@@ -6,7 +6,10 @@ import "dotenv/config";
 import { categoryRouter } from "./routes/category-route.js";
 import { connection } from "./config/config.js";
 import { productRouter } from "./routes/product-route.js";
+import { userRouter } from "./routes/user-route.js";
+import { postRouter } from "./routes/post-route.js";
 const PORT = process.env.PORT || 443;
+process.env.TZ = "Europe/Kiyv";
 connection
   .sync()
   .then(() => {
@@ -19,6 +22,8 @@ connection
     app.use(express.json());
     app.use("/category", categoryRouter);
     app.use("/product", productRouter);
+    app.use("/user", userRouter);
+    app.use("/post", postRouter);
     https
       .createServer(options, app)
       .listen(PORT, () => console.log(`Server is running https://127.0.0.1`));
