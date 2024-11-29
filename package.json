@@ -1,1 +1,8 @@
-{}
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:tsc": "tsc -w",
+    "dev:run": "nodemon dist/server.js",
+    "common": "tsc && nodemon dist/server.js"
+  }
+}
