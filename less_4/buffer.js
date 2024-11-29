@@ -1,0 +1,21 @@
+// import { log } from "node:console";
+// import fs from "node:fs";
+// const content = fs.readFileSync("data.txt", { encoding: "utf-8" });
+// log(content);
+import { Buffer } from "node:buffer";
+import { log } from "node:console";
+// const buff = Buffer.alloc(8);
+// buff.write("hello world");
+// console.log(buff);
+// console.log(buff.toString());
+const mess = "Hello Node JS";
+const buff = Buffer.from(mess);
+log(buff);
+log(buff.toString());
+//log(buff.toString("utf-8", 0, 4));
+//log(buff.length);
+const buff1 = Buffer.from("abc");
+const buff2 = Buffer.from("az");
+// buff1.copy(buff2);
+// log(buff2.toString()); //C+
+log(buff1.compare(buff2));
